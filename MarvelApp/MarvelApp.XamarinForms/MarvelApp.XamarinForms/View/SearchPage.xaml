@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:MarvelApp.XamarinForms.Portable.View.Controls;assembly=MarvelApp.XamarinForms.Portable"
+  x:Class="MarvelApp.XamarinForms.View.SearchPage"
+  Title="search for characters">
+
+  <Grid ColumnSpacing="0" Padding="19,0,19,0">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    
+    <!-- Barra de búsqueda -->
+    <Entry Grid.Row="0" Grid.Column="0" x:Name="QueryEntry"/>
+    <Button Grid.Row="0" Grid.Column="1"  Text="search" Clicked="OnSearchButtonClicked"/>
+
+    <!-- Progreso -->
+    <ActivityIndicator 
+      Grid.Row="1" 
+      Grid.Column="0" Grid.ColumnSpan="2"
+      IsVisible="{Binding Loading}"  IsRunning="{Binding Loading}"/>
+        
+    <!-- Lista de personajes encontrados -->
+    <ListView
+      Grid.Row="2"
+      Grid.Column="0" Grid.ColumnSpan="2"
+      ItemsSource="{Binding Characters}"
+      ItemTapped="OnCharacterTapped"
+      RowHeight="{StaticResource rowHeight100}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+            <StackLayout
+              Padding="0,0,0,12" 
+              Orientation="Horizontal">
+              <controls:WImage 
+                Source="{Binding Thumbnail}"
+                WidthRequest="100"
+                HeightRequest="100"
+                Aspect="AspectFill"/>
+              <StackLayout
+                Padding="5,5,0,0">
+                <Label
+                  Text="{Binding Name}"
+                  Font="24"/>
+                </StackLayout>
+              </StackLayout>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </Grid>
+</ContentPage>

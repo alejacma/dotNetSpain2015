@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+  xmlns:controls="clr-namespace:MarvelApp.XamarinForms.Portable.View.Controls;assembly=MarvelApp.XamarinForms.Portable"
+  x:Class="MarvelApp.XamarinForms.View.MainPage"
+  Title="favorites">
+
+  <!-- Personajes favoritos -->
+  <ContentPage Title="characters">
+    <StackLayout
+      Padding="12,0,0,0">
+
+      <!-- Progreso -->
+      <ActivityIndicator IsVisible="{Binding Loading}"  IsRunning="{Binding Loading}"/>
+
+      <!-- Lista de personajes favoritos -->
+      <ListView
+        ItemsSource="{Binding FavoriteCharacters}"
+        ItemTapped="OnCharacterTapped"
+        RowHeight="{StaticResource rowHeight100}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout
+                  Padding="0,0,0,12" 
+                  Orientation="Horizontal">
+                  <controls:WImage 
+                    Source="{Binding Thumbnail}"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Aspect="AspectFill"/>
+                  <StackLayout
+                    Padding="5,5,0,0">
+                    <Label
+                      Text="{Binding Name}"
+                      Font="24"/>
+                  </StackLayout>
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage>
+    
+  <!-- Cómics favoritos -->
+  <ContentPage Title="comics">
+    <StackLayout
+      Padding="12,0,0,0">
+
+      <!-- Progreso -->
+      <ActivityIndicator IsVisible="{Binding Loading}"  IsRunning="{Binding Loading}"/>
+        
+      <!-- Lista de cómics favoritos -->
+      <ListView
+        ItemsSource="{Binding FavoriteComics}"
+        ItemTapped="OnComicTapped"
+        RowHeight="{StaticResource rowHeight147}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout
+                  Padding="0,0,0,12" 
+                  Orientation="Horizontal">
+                  <controls:WImage 
+                    Source="{Binding Thumbnail}"
+                    WidthRequest="100"
+                    HeightRequest="147"
+                    Aspect="AspectFill"/>
+                  <StackLayout
+                    Padding="5,5,0,0">
+                    <Label
+                      Text="{Binding Title}"
+                      Font="24"/>
+                  </StackLayout>
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage>
+
+  <!-- Creadores favoritos -->
+  <ContentPage Title="creators">
+    <StackLayout
+      Padding="12,0,0,0">
+
+      <!-- Progreso --> 
+      <ActivityIndicator IsVisible="{Binding Loading}"  IsRunning="{Binding Loading}"/>
+            
+      <!-- Lista de creadores favoritos -->
+      <ListView
+        ItemsSource="{Binding FavoriteCreators}"
+        ItemTapped="OnCreatorTapped"
+        RowHeight="{StaticResource rowHeight100}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout
+                  Padding="0,0,0,12" 
+                  Orientation="Horizontal">
+                  <controls:WImage 
+                    Source="{Binding Thumbnail}"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Aspect="AspectFill"/>
+                  <StackLayout
+                    Padding="5,5,0,0">
+                    <Label
+                      Text="{Binding FullName}"
+                      Font="24"/>
+                  </StackLayout>
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage>
+    
+  <!-- Comandos -->
+  <TabbedPage.ToolbarItems>
+    <ToolbarItem Name="login" Order="Primary" Command="{Binding LoginCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="LoginIcon.png" 
+          WinPhone="Assets/LoginIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Name="logout" Order="Primary" Command="{Binding LogoutCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="LogoutIcon.png" 
+          WinPhone="Assets/LogoutIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>        
+    <ToolbarItem Name="synchronize" Order="Primary" Command="{Binding SyncCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="SyncIcon.png" 
+          WinPhone="Assets/SyncIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Name="search" Order="Primary" Command="{Binding SearchCommand}"> 
+      <ToolbarItem.Icon> 
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="SearchIcon.png" 
+          WinPhone="Assets/SearchIcon.png" /> 
+      </ToolbarItem.Icon> 
+    </ToolbarItem>
+  </TabbedPage.ToolbarItems>
+</TabbedPage>    

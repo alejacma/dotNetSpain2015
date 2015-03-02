@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage 
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:MarvelApp.XamarinForms.Portable.View.Controls;assembly=MarvelApp.XamarinForms.Portable"
+  x:Class="MarvelApp.XamarinForms.View.CharacterPage"
+  Title="character">
+
+  <!-- Imagen del personaje -->
+  <ContentPage Title="poster">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Label
+        Text="{Binding Character.Name}"
+        Font="24"
+        HorizontalOptions="Center"/>
+      <controls:WImage Grid.Row="1" Source="{Binding Character.Thumbnail}" Aspect="AspectFill"/>
+    </Grid>
+  </ContentPage>
+
+  <!-- Cómics del personaje -->
+  <ContentPage Title="comics">
+    <StackLayout
+      Padding="12,0,0,0">
+
+      <!-- Progreso -->
+      <ActivityIndicator IsVisible="{Binding Loading}"  IsRunning="{Binding Loading}"/>
+
+      <!-- Lista de cómics -->
+      <ListView
+        ItemsSource="{Binding Comics}"
+        ItemTapped="OnComicTapped"
+        RowHeight="{StaticResource rowHeight147}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout
+                  Padding="0,0,0,12" 
+                  Orientation="Horizontal">
+                  <controls:WImage 
+                    Source="{Binding Thumbnail}"
+                    WidthRequest="100"
+                    HeightRequest="147"
+                    Aspect="AspectFill"/>
+                  <StackLayout
+                    Padding="5,5,0,0">
+                    <Label
+                      Text="{Binding Title}"
+                      Font="24"/>
+                  </StackLayout>
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+      
+    </StackLayout>
+  </ContentPage>
+
+  <!-- Comandos -->
+  <TabbedPage.ToolbarItems>
+    <ToolbarItem Name="remove" Order="Primary" Command="{Binding RemoveFromFavoritesCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="UnFavoriteIcon.png" 
+          WinPhone="Assets/UnFavoriteIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Name="add" Order="Primary" Command="{Binding AddToFavoritesCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="FavoriteIcon.png" 
+          WinPhone="Assets/FavoriteIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Name="home" Order="Primary" Command="{Binding ShowFavoritesCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="HomeIcon.png" 
+          WinPhone="Assets/HomeIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+  </TabbedPage.ToolbarItems>
+</TabbedPage>

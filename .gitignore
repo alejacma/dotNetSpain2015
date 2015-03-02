@@ -1,0 +1,29 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SQLite.Net.Platform.WinRT/bin
+/SQLite.Net.Platform.WinRT/obj
+/MarvelBackend/MarvelBackendService/bin
+/MarvelBackend/MarvelBackendService/obj
+/MarvelBackend/packages
+/MarvelApp/Components
+/MarvelApp/MarvelApp/MarvelApp.Windows/bin
+/MarvelApp/MarvelApp/MarvelApp.Windows/obj
+/MarvelApp/MarvelApp/MarvelApp.WindowsPhone/bin
+/MarvelApp/MarvelApp/MarvelApp.WindowsPhone/obj
+/MarvelApp/MarvelApp.Portable/bin/Debug
+/MarvelApp/MarvelApp.sln.ide
+/MarvelApp/packages
+/MarvelApp/MarvelApp.Portable/Configuration/MarvelAPIConfiguration - Copy.cs
+/MarvelApp/MarvelApp.Portable/Configuration/MarvelBackendConfiguration - Copy.cs
+/MarvelApp/MarvelApp.Portable/obj
+/MarvelApp/MarvelApp.XamarinForms.Portable/bin/Debug
+/MarvelApp/MarvelApp.XamarinForms.Portable/obj
+/MarvelApp/MarvelApp/MarvelApp.Windows/BundleArtifacts
+/MarvelApp/MarvelApp.XamarinForms/MarvelApp.XamarinForms.iOS
+/MarvelApp/MarvelApp.XamarinForms/MarvelApp.XamarinForms.Droid/bin/Debug
+/MarvelApp/MarvelApp.XamarinForms/MarvelApp.XamarinForms.Droid/obj
+/MarvelApp/MarvelApp.XamarinForms/MarvelApp.XamarinForms.WinPhone/Bin
+/MarvelApp/MarvelApp.XamarinForms/MarvelApp.XamarinForms.WinPhone/obj
+/MarvelApp/MarvelApp.XamarinForms/MarvelApp.XamarinForms.Droid/Services/GcmService - Copy.cs

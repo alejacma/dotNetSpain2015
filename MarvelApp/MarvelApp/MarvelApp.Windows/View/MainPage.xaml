@@ -1,0 +1,210 @@
+﻿<base:BasePage
+    x:Class="MarvelApp.View.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="using:MarvelApp.View.Base"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Dark"
+    DataContext="{Binding Path=MainViewModel, Source={StaticResource Locator}}" FontFamily="Global User Interface">
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Título -->
+        <Border
+            Grid.Row="0"
+            Background="{StaticResource BrandColorBrush}">
+            <TextBlock 
+                Text="favorites" 
+                Style="{StaticResource HeaderTextBlockStyle}"                     
+                TextWrapping="NoWrap" 
+                VerticalAlignment="Bottom" 
+                Margin="100,0,30,30"/>
+        </Border>
+
+        <!-- Contenido -->
+        <Hub
+            Grid.Row="1" 
+            Margin="0,-60,0,0">
+
+            <!-- Personajes -->
+            <HubSection
+                Header="characters" 
+                Margin="60,0,0,0">
+                <DataTemplate>
+                    <GridView
+                        ItemsSource="{Binding FavoriteCharacters}"
+                        SelectionMode="None"
+                        IsItemClickEnabled="True">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                               <Grid 
+                                    Width="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="200"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Background="Gray">
+                                        <Image 
+                                            Source="{Binding Thumbnail}"
+                                            Width="200"
+                                            Height="200"
+                                            Stretch="UniformToFill"/>
+                                    </Border>
+                                    <TextBlock 
+                                        Grid.Row="1"
+                                        Text="{Binding Name}"
+                                        Margin="10" 
+                                        FontFamily="Global User Interface"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction 
+                                    Command="{Binding ShowCharacterCommand}" 
+                                    InputConverter="{StaticResource ItemClickedConverter}"/>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>                        
+                    </GridView>
+                </DataTemplate>
+            </HubSection>
+            
+            <!-- Cómics -->
+            <HubSection
+                Header="comics">
+                <DataTemplate>
+                    <GridView
+                        ItemsSource="{Binding FavoriteComics}"
+                        SelectionMode="None"
+                        IsItemClickEnabled="True">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    Width="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="294"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Background="Gray">
+                                        <Image 
+                                            Source="{Binding Thumbnail}"
+                                            Width="200"
+                                            Height="294"
+                                            Stretch="UniformToFill"/>
+                                    </Border>
+                                    <TextBlock 
+                                        Grid.Row="1"
+                                        Text="{Binding Title}"
+                                        Margin="10" 
+                                        FontFamily="Global User Interface"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction 
+                                    Command="{Binding ShowComicCommand}" 
+                                    InputConverter="{StaticResource ItemClickedConverter}"/>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>                        
+                    </GridView>
+                </DataTemplate>                    
+            </HubSection>
+
+            <!-- Creadores -->
+            <HubSection
+                Header="creators">
+                <DataTemplate>
+                    <GridView
+                        ItemsSource="{Binding FavoriteCreators}"
+                        SelectionMode="None"
+                        IsItemClickEnabled="True">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid 
+                                    Width="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="200"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Background="Gray">
+                                        <Image 
+                                            Source="{Binding Thumbnail}"
+                                            Width="200"
+                                            Height="200"
+                                            Stretch="UniformToFill"/>
+                                    </Border>
+                                    <TextBlock 
+                                        Grid.Row="1"
+                                        Text="{Binding FullName}"
+                                        Margin="10" 
+                                        FontFamily="Global User Interface"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction 
+                                    Command="{Binding ShowCreatorCommand}" 
+                                    InputConverter="{StaticResource ItemClickedConverter}"/>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>                        
+                    </GridView>
+                </DataTemplate>                
+            </HubSection>
+        </Hub>
+        
+        <!-- Comandos -->
+        <Grid Height="100" VerticalAlignment="Top" HorizontalAlignment="Right" Background="{StaticResource BrandColorBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <AppBarButton x:Name="LogoutButton" Grid.Column="0" Visibility="{Binding IsEnabled, ElementName=LogoutButton, Converter={StaticResource BooleanToVisibilityConverter}}" Height="70" VerticalAlignment="Center" Icon="BlockContact" Command="{Binding LogoutCommand}"/>
+            <AppBarButton x:Name="LoginButton" Grid.Column="1" Visibility="{Binding IsEnabled, ElementName=LoginButton, Converter={StaticResource BooleanToVisibilityConverter}}" Height="70" VerticalAlignment="Center" Icon="AddFriend" Command="{Binding LoginCommand}"/>
+            <AppBarButton x:Name="SyncButton" Grid.Column="2" Visibility="{Binding IsEnabled, ElementName=SyncButton, Converter={StaticResource BooleanToVisibilityConverter}}" Height="70" VerticalAlignment="Center" Icon="Refresh" Command="{Binding SyncCommand}"/>
+            <AppBarButton Grid.Column="3" Height="70" VerticalAlignment="Center" Icon="Find" Command="{Binding SearchCommand}" FontFamily="Global User Interface"/>
+        </Grid>
+
+        <!-- Progreso -->
+        <ProgressBar 
+            IsIndeterminate="True" 
+            Visibility="{Binding Loading, Converter={StaticResource BooleanToVisibilityConverter}}" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Margin="0,10,0,0"/>
+        
+        <!-- Mensajes de error -->
+        <Border
+            x:Name="ErrorMessage"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Height="80"
+            Margin="0,10,0,0"
+            Padding="10"
+            Background="{StaticResource BrandLightColorBrush}"
+            Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Text="{Binding Message}" FontSize="18" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border> 
+
+    </Grid>
+</base:BasePage>

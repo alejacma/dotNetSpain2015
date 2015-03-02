@@ -1,0 +1,20 @@
+﻿<Application 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MarvelApp.XamarinForms.App">
+  
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Recursos especifícos para cada plataforma -->  
+            <OnPlatform x:Key="rowHeight100" 
+                  x:TypeArguments="x:Int32"
+                  Android="100"
+                  WinPhone="112" />
+
+            <OnPlatform x:Key="rowHeight147" 
+                  x:TypeArguments="x:Int32"
+                  Android="147"
+                  WinPhone="159" />
+        </ResourceDictionary>
+    </Application.Resources>  
+</Application>

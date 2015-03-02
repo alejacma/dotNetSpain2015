@@ -1,0 +1,31 @@
+﻿<Application
+    x:Class="MarvelApp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MarvelApp"
+    xmlns:converters="using:MarvelApp.View.Converters">
+
+    <Application.Resources>
+
+        <!-- Servicio que proporciona los vista-modelo a las vistas -->
+        <local:ServiceLocator x:Key="Locator"/>
+            
+        <!-- Conversores -->  
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:ItemClickedConverter x:Key="ItemClickedConverter"/>
+        
+        <!-- Colores "de marca" -->
+        <Color x:Key="BrandColor">#891009</Color>
+        <Color x:Key="BrandLightColor">#C95049</Color>
+        <SolidColorBrush x:Key="BrandColorBrush" Color="{StaticResource BrandColor}" />
+        <SolidColorBrush x:Key="BrandLightColorBrush" Color="{StaticResource BrandLightColor}" />
+           
+        <!-- Colores de sistema sobreescritos -->
+        <SolidColorBrush x:Key="ApplicationForegroundColorThemeBrush" Color="{StaticResource BrandColor}" />            
+        <SolidColorBrush x:Key="ProgressBarIndeterminateForegroundThemeBrush" Color="White"/>
+        <SolidColorBrush x:Key="SearchBoxButtonBackgroundThemeBrush" Color="{StaticResource BrandLightColor}" />
+        <SolidColorBrush x:Key="SearchBoxButtonPointerOverBackgroundThemeBrush" Color="{StaticResource BrandLightColor}" />
+
+    </Application.Resources>
+    
+</Application>

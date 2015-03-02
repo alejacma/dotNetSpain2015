@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage 
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:MarvelApp.XamarinForms.Portable.View.Controls;assembly=MarvelApp.XamarinForms.Portable"
+  x:Class="MarvelApp.XamarinForms.View.ComicPage"            
+  Title="comic">
+
+  <!-- Imagen del cómic -->
+  <ContentPage Title="poster">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Label
+        Text="{Binding Comic.Title}"
+        Font="24"
+        HorizontalOptions="Center"/>
+      <controls:WImage Grid.Row="1" Source="{Binding Comic.Thumbnail}" Aspect="AspectFill"/>
+    </Grid>
+  </ContentPage>
+
+  <!-- Personajes del cómic -->
+  <ContentPage Title="characters">
+    <StackLayout
+      Padding="12,0,0,0">
+
+      <!-- Progreso -->
+      <ActivityIndicator IsVisible="{Binding Loading}" IsRunning="{Binding Loading}"/>
+     
+      <!-- Lista de personajes -->
+      <ListView
+        ItemsSource="{Binding Characters}"
+        ItemTapped="OnCharacterTapped"
+        RowHeight="{StaticResource rowHeight100}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout
+                  Padding="0,0,0,12" 
+                  Orientation="Horizontal">
+                  <controls:WImage 
+                    Source="{Binding Thumbnail}"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Aspect="AspectFill"/>
+                  <StackLayout
+                    Padding="5,5,0,0">
+                    <Label
+                      Text="{Binding Name}"
+                      Font="24"/>
+                  </StackLayout>
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage>
+
+  <!-- Creadores del cómic -->
+  <ContentPage Title="creators">
+    <StackLayout
+      Padding="12,0,0,0">
+
+      <!-- Progreso -->
+      <ActivityIndicator IsVisible="{Binding Loading}"  IsRunning="{Binding Loading}"/>
+
+      <!-- Lista de creadores -->
+      <ListView
+        ItemsSource="{Binding Creators}"
+        ItemTapped="OnCreatorTapped"
+        RowHeight="{StaticResource rowHeight100}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout
+                  Padding="0,0,0,12" 
+                  Orientation="Horizontal">
+                  <controls:WImage 
+                    Source="{Binding Thumbnail}"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Aspect="AspectFill"/>
+                  <StackLayout
+                    Padding="5,5,0,0">
+                  <Label
+                    Text="{Binding FullName}"
+                    Font="24"/>
+                  </StackLayout>
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage>
+
+  <!-- Comandos -->
+  <TabbedPage.ToolbarItems>
+    <ToolbarItem Name="remove" Order="Primary" Command="{Binding RemoveFromFavoritesCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="UnFavoriteIcon.png" 
+          WinPhone="Assets/UnFavoriteIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Name="add" Order="Primary" Command="{Binding AddToFavoritesCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="FavoriteIcon.png" 
+          WinPhone="Assets/FavoriteIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Name="home" Order="Primary" Command="{Binding ShowFavoritesCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform 
+          x:TypeArguments="FileImageSource" 
+          Android="HomeIcon.png" 
+          WinPhone="Assets/HomeIcon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+  </TabbedPage.ToolbarItems>
+</TabbedPage>
