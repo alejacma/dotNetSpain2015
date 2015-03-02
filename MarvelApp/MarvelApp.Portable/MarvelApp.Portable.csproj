@@ -53,6 +53,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Configuration\MarvelAPIConfiguration - Copy.cs" />
+    <Compile Include="Configuration\MarvelBackendConfiguration - Copy.cs" />
     <Compile Include="Model\DataContext\Base\IMobileServiceDataContext.cs" />
     <Compile Include="Model\DataContext\MarvelBackendSyncHandler.cs" />
     <Compile Include="Model\Entities\MarvelAPI\ComicCreator.cs" />

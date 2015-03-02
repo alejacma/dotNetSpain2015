@@ -189,6 +189,7 @@
     <Compile Include="DataContext\MarvelAPIDataContextAndroid.cs" />
     <Compile Include="DataContext\MarvelBackendDataContextAndroid.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Services\GcmService - Copy.cs" />
     <Compile Include="Services\GcmService.cs" />
     <Compile Include="Renderers\WImageRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
